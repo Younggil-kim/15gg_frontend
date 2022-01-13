@@ -1,0 +1,10 @@
+@font-face {
+    /* 사용할 폰트의 이름 */
+    font-family: "maple";
+    font-display: fallback;
+  
+    src: url("./Maplestory Light.ttf") format("truetype");
+    
+    font-weight: 400;
+    font-style: normal;
+  }
