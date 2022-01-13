@@ -6,6 +6,7 @@ import "./Static/Font/font.css";
 import Login from './Page/Login'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from './Components/Header';
+import Chatting from './Page/Chatting';
 function App() {
   return (
     <Router>
@@ -13,6 +14,7 @@ function App() {
       
       <Routes>
         <Route path="/" element={<Main />}></Route>
+        <Route path="/chatting" element={<Chatting />}></Route>
         <Route path="/register" element={<Regeister />}></Route>
         <Route path="/login" element={<Login />}></Route>
       </Routes>

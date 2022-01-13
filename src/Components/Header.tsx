@@ -13,7 +13,7 @@ const Nav = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #FF774D;
+    background-color: white;
     padding: 8px 12px;
 `
 const Div = styled.div`
