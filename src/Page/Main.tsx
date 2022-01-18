@@ -36,15 +36,24 @@ const Wrapper = styled(motion.div)`
 `;
 const Box = styled(motion.div)`
   width: 300px;
-  height: 400px;
+  height: 350px;
   background-color: rgb(236, 240, 241);
   border-radius: 45px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   font-size: 28px;
   box-shadow: 0 0 10px 2px rgba(100, 100, 100);
+  &:hover{
+    height: 400px;
+  }
+  &:first-child {
+    transform-origin: center left;
+  }
+  &:last-child {
+    transform-origin: center right;
+  }
 `;
 const BoxRecent = styled(motion.div)`
   /* width: 300px; */
@@ -60,25 +69,6 @@ const BoxRecent = styled(motion.div)`
   font-size: 28px;
   box-shadow: 0 0 10px 2px rgba(100, 100, 100);
 `;
-const boxVar = {
-  entry: (back: boolean) => ({
-    x: back ? -500 : 500,
-    opacity: 0,
-    scale: 0,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.2 },
-  },
-  exit: (back: boolean) => ({
-    x: back ? 500 : -500,
-    opacity: 0,
-    scale: 0.8,
-    transition: { duration: 0.5 },
-  }),
-};
 const Btn = styled.button`
   background-color: rgb(209, 204, 192);
   color: black;
@@ -116,6 +106,40 @@ const Row = styled(motion.div)`
   width: 100%;
 `;
 
+const BtnInfo = styled(motion.div)`
+  padding: 10px;
+  opacity: 0;
+  /* position: absolute; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* bottom: 0; */
+`;
+const infoVar = {
+  hover: {
+    opacity: 1,
+    transition: {
+      delay: 0.3,
+      duration: 0.2,
+      // type:"tween"
+    },
+  },
+};
+const BoxVar = {
+  normal: {
+    scale: 1,
+  },
+  hover: {
+    scale: 1.3,
+    y: -50,
+    transition: {
+      delay: 0.3,
+      duration: 0.2,
+      // type:"tween"
+    },
+  },
+};
 const offset = 6;
 
 interface infoType {
@@ -239,9 +263,122 @@ const datas: Array<infoType> = [
   },
 ];
 
+
+const datasRecent: Array<infoType> = [
+  {
+    nickname: "이즈리얼수빈이",
+    tier: "Master",
+    rank: "240",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+  {
+    nickname: "방관자야수빈이",
+    tier: "Grand Master",
+    rank: "460",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+  {
+    nickname: "레이시스트수빈이",
+    tier: "Gold",
+    rank: "2",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+  {
+    nickname: "리그오브수빈이",
+    tier: "Platinum",
+    rank: "1",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+  {
+    nickname: "티슈키우기",
+    tier: "Dia",
+    rank: "1",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+  {
+    nickname: "테트리스도장깨기",
+    tier: "Dia",
+    rank: "1",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+  {
+    nickname: "롤하고싶은수빈이",
+    tier: "Dia",
+    rank: "1",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+  {
+    nickname: "예쁜여자가좋은수빈",
+    tier: "Dia",
+    rank: "1",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+  {
+    nickname: "바텀듀오수빈이",
+    tier: "Dia",
+    rank: "1",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+  {
+    nickname: "이터널수빈이",
+    tier: "Dia",
+    rank: "1",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+  {
+    nickname: "네이버대표수빈이",
+    tier: "Dia",
+    rank: "1",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+  {
+    nickname: "카카오이사수빈이",
+    tier: "Dia",
+    rank: "1",
+    line: "AD",
+    duoLine: "Sup",
+    playStyle: "즐겜",
+    voice: "가능",
+  },
+];
+
 function Main() {
   const [idx, setIdx] = useState(0);
   const [leaving, setLeaving] = useState(false);
+
   const [windowSize, setWindowSize] = useState(window.outerWidth);
   const rowVar = {
     hidden: {
@@ -254,44 +391,61 @@ function Main() {
       x: -windowSize - 10,
     },
   };
+
+  const [idxRecent, setRecentIdx] = useState(0);
+  const [recentLeaving, setRecentLeaving] = useState(false);
+  
+
   const increaseIdx = () => {
     if (datas) {
       if (leaving) return;
       toggleLeaving();
-      const totalInfo = datas.length ;
-      const maxIdx = Math.floor(totalInfo / offset)-1;
+      const totalInfo = datas.length;
+      const maxIdx = Math.floor(totalInfo / offset) - 1;
       setIdx((prev) => (prev === maxIdx ? 0 : prev + 1));
-      setWindowSize(window.outerWidth)
-      console.log(idx)
-      console.log(datas.length, maxIdx)
-      console.log(window.outerWidth)
+      setWindowSize(window.outerWidth);
+    }
+  };
+
+  const increaseIdxRecent = () => {
+    if (datasRecent) {
+      if (recentLeaving) return;
+      toggleLeavingRecent();
+      const totalInfo = datas.length;
+      const maxIdx = Math.floor(totalInfo / offset) - 1;
+      setRecentIdx((prev) => (prev === maxIdx ? 0 : prev + 1));
+      setWindowSize(window.outerWidth);
     }
   };
 
   const toggleLeaving = () => setLeaving((prev) => !prev);
-
-
+  const toggleLeavingRecent = () => setRecentLeaving((prev) => !prev);
   return (
     <div>
       <div>
         <Text>추천 매칭</Text>
         <Wrapper>
-          <AnimatePresence exitBeforeEnter={true} initial={false} onExitComplete={toggleLeaving}>
+          <AnimatePresence
+            exitBeforeEnter={true}
+            initial={false}
+            onExitComplete={toggleLeaving}
+          >
             <Row
-            
               variants={rowVar}
               initial="hidden"
               animate="visible"
               exit="exit"
-              transition={{ type: "tween", duration:0.5 }}
+              transition={{ type: "tween", duration: 0.5 }}
               key={idx}
             >
               {datas.slice(offset * idx, offset * idx + offset).map((data) => (
                 <Box
-
+                  variants={BoxVar}
+                  whileHover="hover"
+                  initial="noraml"
                   key={data.nickname}
                 >
-                  <div>{data.nickname}</div>
+                  <div style={{marginTop: 10}}>{data.nickname}</div>
 
                   <br />
                   <div>
@@ -322,18 +476,18 @@ function Main() {
                     <div style={{ fontSize: 20 }}>플레이스타일 : 빡겜</div>
 
                     <div style={{ fontSize: 20 }}>보이스: 가능</div>
-                    <br />
-                    <Btn
-                      as="a"
-                      href="https://www.op.gg/summoner/userName=미래전략실이호창"
-                      target="_blank"
-                    >
-                      전적확인
-                    </Btn>
-                    <Btn type="button">
-                      <Link to={"/Chatting"}>듀오신청</Link>
-                    </Btn>
-                    <br />
+                    <BtnInfo variants={infoVar}>
+                      <Btn
+                        as="a"
+                        href="https://www.op.gg/summoner/userName=미래전략실이호창"
+                        target="_blank"
+                      >
+                        전적확인
+                      </Btn>
+                      <Btn type="button">
+                        <Link to={"/Chatting"}>듀오신청</Link>
+                      </Btn>
+                    </BtnInfo>
                   </div>
                 </Box>
               ))}
@@ -348,55 +502,79 @@ function Main() {
       <div>
         <Text>신규 매칭</Text>
         <Wrapper>
-          {/* <AnimatePresence custom={back}>
-            <BoxRecent
-              custom={back}
-              variants={boxVar}
-              initial="entry"
-              animate="center"
+          <AnimatePresence
+            exitBeforeEnter={true}
+            initial={false}
+            onExitComplete={toggleLeavingRecent}
+          >
+            <Row
+              variants={rowVar}
+              initial="hidden"
+              animate="visible"
               exit="exit"
-              key={visible}
+              transition={{ type: "tween", duration: 0.5 }}
+              key={idxRecent}
             >
-              <div>수빈이민초당</div>
-
-              <br />
-              <div>
-                <div style={{ fontSize: 20 }}>다이아</div>
-                <img
-                  src={dia}
-                  alt=""
-                  style={{ width: 30, height: 30, marginTop: 5 }}
-                />
-
-                <div>
-                  <div style={{ fontSize: 20 }}>라인</div>
-                  <img
-                    src={sup}
-                    alt=""
-                    style={{ width: 30, height: 30, marginTop: 5 }}
-                  />
+              {datasRecent.slice(offset * idxRecent, offset * idxRecent + offset).map((data) => (
+                <Box
+                  variants={BoxVar}
+                  whileHover="hover"
+                  initial="noraml"
+                  key={data.nickname}
+                >
+                  <div style={{marginTop: 10}}>{data.nickname}</div>
 
                   <br />
-                  <div style={{ fontSize: 20 }}>찾는 라인</div>
-                  <img
-                    src={ad}
-                    alt=""
-                    style={{ width: 30, height: 30, marginTop: 5 }}
-                  />
-                </div>
+                  <div>
+                    <div style={{ fontSize: 20 }}>티어</div>
+                    <img
+                      src={gm}
+                      alt=""
+                      style={{ width: 30, height: 30, marginTop: 5 }}
+                    />
 
-                <div style={{ fontSize: 20 }}>플레이스타일 : 빡겜</div>
+                    <div>
+                      <div style={{ fontSize: 20 }}>라인</div>
+                      <img
+                        src={ad}
+                        alt=""
+                        style={{ width: 30, height: 30, marginTop: 5 }}
+                      />
 
-                <div style={{ fontSize: 20 }}>보이스: 가능</div>
-                <br />
+                      <br />
+                      <div style={{ fontSize: 20 }}>찾는 라인</div>
+                      <img
+                        src={sup}
+                        alt=""
+                        style={{ width: 30, height: 30, marginTop: 5 }}
+                      />
+                    </div>
 
-                <Btn type="button">전적확인</Btn>
-                <Btn type="button">듀오신청</Btn>
-                <br />
-              </div>
-            </BoxRecent>
-          </AnimatePresence> */}
+                    <div style={{ fontSize: 20 }}>플레이스타일 : 빡겜</div>
+
+                    <div style={{ fontSize: 20 }}>보이스: 가능</div>
+                    <BtnInfo variants={infoVar}>
+                      <Btn
+                        as="a"
+                        href="https://www.op.gg/summoner/userName=미래전략실이호창"
+                        target="_blank"
+                      >
+                        전적확인
+                      </Btn>
+                      <Btn type="button">
+                        <Link to={"/Chatting"}>듀오신청</Link>
+                      </Btn>
+                    </BtnInfo>
+                  </div>
+                </Box>
+              ))}
+            </Row>
+          </AnimatePresence>
         </Wrapper>
+        <SlidBtnWrapper>
+          <Btn onClick={increaseIdxRecent}>prev</Btn>
+          <Btn onClick={increaseIdxRecent}>next</Btn>
+        </SlidBtnWrapper>
       </div>
     </div>
   );
