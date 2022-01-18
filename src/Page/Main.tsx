@@ -55,20 +55,7 @@ const Box = styled(motion.div)`
     transform-origin: center right;
   }
 `;
-const BoxRecent = styled(motion.div)`
-  /* width: 300px; */
-  height: 400px;
-  position: absolute;
-  background-color: #b8c6db;
-  background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
-  border-radius: 45px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 28px;
-  box-shadow: 0 0 10px 2px rgba(100, 100, 100);
-`;
+
 const Btn = styled.button`
   background-color: rgb(209, 204, 192);
   color: black;

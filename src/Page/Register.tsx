@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -10,7 +9,7 @@ const Wrapper = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 10px 2px rgba(100, 100, 100);
-  background-color: #f9c1b1;
+  background-color: rgb(236, 240, 241);
   border-radius: 10px;
 `;
 const Form = styled.form`
@@ -34,7 +33,7 @@ const Label = styled.label`
   margin-top: 5px;
 `;
 const Btn = styled.button`
-  background-color: #ff774d;
+  background-color: rgb(209, 204, 192);
   color: black;
   font-family: inherit;
   border: none;
@@ -43,9 +42,10 @@ const Btn = styled.button`
   margin: 5px;
   font-size: 24px;
   margin-top: 10px;
-  cursor:pointer;
+  cursor: pointer;
   &:hover {
-    background-color: #c0392b;
+    background-color: rgb(132, 129, 122);
+    color: white;
   }
 `;
 
