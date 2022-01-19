@@ -8,6 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
+
 import top from "../Static/Img/top.png";
 import jug from "../Static/Img/jug.png";
 import mid from "../Static/Img/mid.png";

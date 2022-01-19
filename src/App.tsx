@@ -7,6 +7,7 @@ import Login from './Page/Login'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from './Components/Header';
 import Chatting from './Page/Chatting';
+import MyInfo from './Page/MyInfo';
 function App() {
   return (
     <Router>
@@ -17,6 +18,8 @@ function App() {
         <Route path="/chatting" element={<Chatting />}></Route>
         <Route path="/register" element={<Regeister />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/myinfo" element={<MyInfo />}></Route>
+
       </Routes>
     </Router>
   );

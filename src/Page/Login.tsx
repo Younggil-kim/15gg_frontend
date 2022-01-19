@@ -30,7 +30,6 @@ const Label = styled.label`
 `;
 const Input = styled.input`
   height: 25px;
-
   width: 200px;
 `;
 const Btn = styled.button`
@@ -43,14 +42,12 @@ const Btn = styled.button`
     margin: 5px;
     font-size: 24px;
     margin-top: 10px;
-    cursor:pointer;
     cursor: pointer;
   &:hover {
     background-color: rgb(132, 129, 122);
     color: white;
   }
 }
-    
 `;
 
 function Login() {
