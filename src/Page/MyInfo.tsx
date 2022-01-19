@@ -29,16 +29,20 @@ const Container = styled.div`
   background-color: rgb(236, 240, 241);
   border-radius: 10px;
 `;
+const Section = styled.div`
+  
+`;
 
 function MyInfo() {
-
   return (
     <div>
       <Container>
         <h1>"방패주워주는수빈이"님의 듀오 모집 정보</h1>
         <form>
-          <h2>소개글</h2>
-          <input type="text" placeholder=""></input>
+          <section>
+            <h2>소개글</h2>
+            <input type="text" placeholder=""></input>
+          </section>
           <section>
             <h2>선호 포지션</h2>
             <input type="radio" name="radio1" id="top" value="top" />
@@ -71,7 +75,6 @@ function MyInfo() {
             <label htmlFor="soft">즐겜</label>
             <input type="radio" name="radio3" id="hard" value="빡겜" />
             <label htmlFor="hard">빡겜</label>
-
           </section>
 
           <section>
@@ -88,7 +91,6 @@ function MyInfo() {
             <label htmlFor="on">ON</label>
             <input type="radio" name="radio5" id="off" value="off" />
             <label htmlFor="off">OFF</label>
-
           </section>
 
           <input type="submit" value="Submit" />
