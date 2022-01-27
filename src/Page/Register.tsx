@@ -27,6 +27,8 @@ const FormDiv = styled.div`
 const Input = styled.input`
   height: 25px;
   width: 200px;
+  
+  border-radius: 15px;
 `;
 const Label = styled.label`
   font-size: 25px;
