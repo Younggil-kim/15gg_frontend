@@ -374,25 +374,29 @@ const datasRecent: Array<infoType> = [
 function Main() {
   const [idx, setIdx] = useState(0);
   const [leaving, setLeaving] = useState(false);
-
+  const [idxRecent, setRecentIdx] = useState(0);
+  const [recentLeaving, setRecentLeaving] = useState(false);
   const [windowSize, setWindowSize] = useState(window.outerWidth);
-  const rowVar = {
+  const [back, setBack] = useState(false);
+  const [backRecent, setBackRecent] = useState(false);
+
+
+
+  const rowVarRecent = {
     hidden: {
       x: windowSize + 10,
     },
     visible: {
       x: 0,
     },
-    exit: {
+    exit:{
       x: -windowSize - 10,
     },
   };
 
-  const [idxRecent, setRecentIdx] = useState(0);
-  const [recentLeaving, setRecentLeaving] = useState(false);
-
 
   const increaseIdx = () => {
+    setBack(false)
     if (datas) {
       if (leaving) return;
       toggleLeaving();
@@ -403,18 +407,20 @@ function Main() {
     }
   };
   const decreaseIdx = () => {
+    setBack(true)
     if(datas){
       if (leaving) return;
       toggleLeaving();
       const totalInfo = datas.length;
-      const maxIdx = Math.floor(totalInfo/ offset) -1;
-      setIdx((prev) => (prev === 0 ? totalInfo : prev - 1))
+      const maxIdx = Math.floor(totalInfo / offset) - 1;
+      setIdx((prev) => (prev === 0 ? maxIdx : prev - 1))
       setWindowSize(window.outerWidth);
     }
   }
 
 
   const increaseIdxRecent = () => {
+    setBackRecent(false)
     if (datasRecent) {
       if (recentLeaving) return;
       toggleLeavingRecent();
@@ -422,15 +428,36 @@ function Main() {
       const maxIdx = Math.floor(totalInfo / offset) - 1;
       setRecentIdx((prev) => (prev === maxIdx ? 0 : prev + 1));
       setWindowSize(window.outerWidth);
+      setBackRecent(false)
     }
   };
-
+  const decreaseIdxRecent = () => {
+    setBackRecent(false)
+    if (datasRecent) {
+      if (recentLeaving) return;
+      toggleLeavingRecent();
+      const totalInfo = datas.length;
+  
+      const maxIdx = Math.floor(totalInfo / offset) - 1;
+      setRecentIdx((prev) => (prev === 0 ? maxIdx : prev - 1));
+      setWindowSize(window.outerWidth);
+      setBackRecent(true)
+    }
+  };
   const toggleLeaving = () => setLeaving((prev) => !prev);
   const toggleLeavingRecent = () => setRecentLeaving((prev) => !prev);
 
-  // const autoOver = setInterval(() => increaseIdx, 7000);
-  // const autoOverRecent = setInterval(() => increaseIdxRecent,7000);
-
+  const rowVar = {
+    hidden: (back: boolean) => ({
+      x:  back? -windowSize-10 : windowSize+10 
+    }),
+    visible: {
+      x: 0,
+    },
+    exit: (back: boolean) => ({
+      x: back? +windowSize + 10 : -windowSize-10 
+    }),
+  };
 
   return (
     <div>
@@ -441,8 +468,10 @@ function Main() {
             exitBeforeEnter={true}
             initial={false}
             onExitComplete={toggleLeaving}
+            custom={back}
           >
             <Row
+            custom={back}
               variants={rowVar}
               initial="hidden"
               animate="visible"
@@ -507,8 +536,8 @@ function Main() {
           </AnimatePresence>
         </Wrapper>
         <SlidBtnWrapper>
-          <Btn onClick={increaseIdx}>prev</Btn>
-          <Btn onClick={decreaseIdx}>next</Btn>
+          <Btn onClick={decreaseIdx}>prev</Btn>
+          <Btn onClick={increaseIdx}>next</Btn>
         </SlidBtnWrapper>
       </div>
       <div>
@@ -518,6 +547,7 @@ function Main() {
             exitBeforeEnter={true}
             initial={false}
             onExitComplete={toggleLeavingRecent}
+            custom={backRecent}
           >
             <Row
               variants={rowVar}
@@ -526,6 +556,7 @@ function Main() {
               exit="exit"
               transition={{ type: "tween", duration: 0.5 }}
               key={idxRecent}
+              custom={backRecent}
             >
               {datasRecent.slice(offset * idxRecent, offset * idxRecent + offset).map((data) => (
                 <Box
@@ -584,7 +615,7 @@ function Main() {
           </AnimatePresence>
         </Wrapper>
         <SlidBtnWrapper>
-          <Btn onClick={increaseIdxRecent}>prev</Btn>
+          <Btn onClick={decreaseIdxRecent}>prev</Btn>
           <Btn onClick={increaseIdxRecent}>next</Btn>
         </SlidBtnWrapper>
       </div>
