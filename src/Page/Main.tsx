@@ -24,6 +24,7 @@ import sil from "../Static/Img/sil.png";
 import brz from "../Static/Img/brz.png";
 import iron from "../Static/Img/iron.png";
 import unrank from "../Static/Img/unrank.png";
+import { isWhiteSpaceLike } from "typescript";
 
 const Wrapper = styled(motion.div)`
   height: 420px;
@@ -73,6 +74,13 @@ const Btn = styled.button`
     color: white;
   }
 `;
+const LinkBtn = styled(Link)`
+&:hover {
+  background-color: rgb(132, 129, 122);
+  color: white;
+}
+`;
+
 const Text = styled.div`
   font-size: 25px;
   margin-left: 25px;
@@ -382,7 +390,7 @@ function Main() {
 
   const [idxRecent, setRecentIdx] = useState(0);
   const [recentLeaving, setRecentLeaving] = useState(false);
-  
+
 
   const increaseIdx = () => {
     if (datas) {
@@ -394,6 +402,17 @@ function Main() {
       setWindowSize(window.outerWidth);
     }
   };
+  const decreaseIdx = () => {
+    if(datas){
+      if (leaving) return;
+      toggleLeaving();
+      const totalInfo = datas.length;
+      const maxIdx = Math.floor(totalInfo/ offset) -1;
+      setIdx((prev) => (prev === 0 ? totalInfo : prev - 1))
+      setWindowSize(window.outerWidth);
+    }
+  }
+
 
   const increaseIdxRecent = () => {
     if (datasRecent) {
@@ -408,6 +427,11 @@ function Main() {
 
   const toggleLeaving = () => setLeaving((prev) => !prev);
   const toggleLeavingRecent = () => setRecentLeaving((prev) => !prev);
+
+  // const autoOver = setInterval(() => increaseIdx, 7000);
+  // const autoOverRecent = setInterval(() => increaseIdxRecent,7000);
+
+
   return (
     <div>
       <div>
@@ -433,7 +457,7 @@ function Main() {
                   initial="noraml"
                   key={data.nickname}
                 >
-                  <div style={{marginTop: 10}}>{data.nickname}</div>
+                  <div style={{ marginTop: 10 }}>{data.nickname}</div>
 
                   <br />
                   <div>
@@ -473,7 +497,7 @@ function Main() {
                         전적확인
                       </Btn>
                       <Btn type="button">
-                        <Link to={"/Chatting"}>듀오신청</Link>
+                        <LinkBtn to={"/Chatting"}>듀오신청</LinkBtn>
                       </Btn>
                     </BtnInfo>
                   </div>
@@ -484,7 +508,7 @@ function Main() {
         </Wrapper>
         <SlidBtnWrapper>
           <Btn onClick={increaseIdx}>prev</Btn>
-          <Btn onClick={increaseIdx}>next</Btn>
+          <Btn onClick={decreaseIdx}>next</Btn>
         </SlidBtnWrapper>
       </div>
       <div>
@@ -510,7 +534,7 @@ function Main() {
                   initial="noraml"
                   key={data.nickname}
                 >
-                  <div style={{marginTop: 10}}>{data.nickname}</div>
+                  <div style={{ marginTop: 10 }}>{data.nickname}</div>
 
                   <br />
                   <div>
@@ -550,7 +574,7 @@ function Main() {
                         전적확인
                       </Btn>
                       <Btn type="button">
-                        <Link to={"/Chatting"}>듀오신청</Link>
+                        <LinkBtn to={"/Chatting"}>듀오신청</LinkBtn>
                       </Btn>
                     </BtnInfo>
                   </div>
