@@ -11,10 +11,11 @@ import { useEffect, useRef, useState } from "react";
 
 interface userInfo {
   nickname: string;
+
 }
 
 const Container = styled.div`
-  max-width: 850px;
+  max-width: 600px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -29,9 +30,23 @@ const Container = styled.div`
   background-color: rgb(236, 240, 241);
   border-radius: 10px;
 `;
-const Section = styled.div`
-  
+const Submit = styled.input`
+  width: 100%;
+  margin-top : 10px;
+  margin-bottom : 10px;
+  font-size: 20px;
+  border-radius: 15px;
+  cursor:pointer;
+  &:hover{
+    background-color: rgb(132, 129, 122);
+    color: white;
+  }
 `;
+const Info = styled.input`
+  width: 100%;
+  height: 50px;
+  border-radius: 15px;
+`
 
 function MyInfo() {
   return (
@@ -41,7 +56,7 @@ function MyInfo() {
         <form>
           <section>
             <h2>소개글</h2>
-            <input type="text" placeholder=""></input>
+            <Info type="text" placeholder=""></Info>
           </section>
           <section>
             <h2>선호 포지션</h2>
@@ -73,6 +88,8 @@ function MyInfo() {
             <h2>희망 플레이스타일</h2>
             <input type="radio" name="radio3" id="soft" value="즐겜" />
             <label htmlFor="soft">즐겜</label>
+            <input type="radio" name="radio3" id="half" value="중간" />
+            <label htmlFor="half">중간</label>
             <input type="radio" name="radio3" id="hard" value="빡겜" />
             <label htmlFor="hard">빡겜</label>
           </section>
@@ -93,7 +110,7 @@ function MyInfo() {
             <label htmlFor="off">OFF</label>
           </section>
 
-          <input type="submit" value="Submit" />
+          <Submit type="submit" value="Submit" />
         </form>
       </Container>
     </div>

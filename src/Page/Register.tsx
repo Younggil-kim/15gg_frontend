@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import Kakao from "./Kakao";
+
 
 const Wrapper = styled.div`
   width: 500px;
@@ -104,8 +106,8 @@ function Regeister() {
             <Input onChange={onChangeEmail} type="text" name="name" />
             <Label>인증번호</Label>
             <Input onChange={onChangeAuthNum} type="number" name="name" />
-            <Label>닉네임</Label>
-            <Input onChange={onChangeNickname} type="text" name="name" />
+            {/* <Label>닉네임</Label>
+            <Input onChange={onChangeNickname} type="text" name="name" /> */}
             <Label>비밀번호</Label>
             <Input onChange={onChangePassword} type="text" name="name" />
             <Label>비밀번호 확인</Label>
@@ -113,8 +115,10 @@ function Regeister() {
             <Btn form="regiForm" type="button" onClick={onSubmit}>
               가입하기
             </Btn>
+            <Kakao></Kakao>
           </FormDiv>
         </Form>
+
       </Wrapper>
     </div>
   );
