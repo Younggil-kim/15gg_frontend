@@ -1,11 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Kakao from "./Kakao";
-
+import Kakao from "../Components/Kakao";
+import Naver from "../Components/Naver";
 
 const Wrapper = styled.div`
   width: 500px;
-  height: 400px;
+  height: 450px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -116,6 +116,7 @@ function Regeister() {
               가입하기
             </Btn>
             <Kakao></Kakao>
+            <Naver></Naver>
           </FormDiv>
         </Form>
 

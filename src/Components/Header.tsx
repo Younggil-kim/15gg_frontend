@@ -37,7 +37,10 @@ function Header({login, nickname, tier} : headerProps)  {
   return (
     <Nav>
       <Div>
+        <Link to={"/"}>
+
         <img src={sitelogo} alt="" style={{width:36 , height:36, marginRight: 10}}></img>
+        </Link>
         <Link to={"/"}>듀오&듀오</Link>
       </Div>
 

@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from './Components/Header';
 import Chatting from './Page/Chatting';
 import MyInfo from './Page/MyInfo';
+import Nickname from './Page/Nickname';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Route path="/register" element={<Regeister />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/myinfo" element={<MyInfo />}></Route>
+        
+        <Route path="/nickName" element={<Nickname />}></Route>
     
       </Routes>
 

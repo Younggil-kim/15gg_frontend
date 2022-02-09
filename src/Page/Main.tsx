@@ -29,7 +29,7 @@ import { isWhiteSpaceLike } from "typescript";
 const Wrapper = styled(motion.div)`
   height: 420px;
   margin-top: 10px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   background-color: #ecf0f1;
   justify-content: center;
@@ -97,10 +97,13 @@ const Row = styled(motion.div)`
   align-items: center;
   gap: 10px;
   grid-template-columns: repeat(6, 1fr);
+  
   margin-bottom: 5px;
   position: absolute;
-  width: 100%;
+  width: 100vw;
 `;
+
+
 
 const BtnInfo = styled(motion.div)`
   padding: 10px;
@@ -471,6 +474,7 @@ function Main() {
             custom={back}
           >
             <Row
+            // number={Math.floor(windowSize/300)}
             custom={back}
               variants={rowVar}
               initial="hidden"
@@ -550,6 +554,7 @@ function Main() {
             custom={backRecent}
           >
             <Row
+              // number={6}
               variants={rowVar}
               initial="hidden"
               animate="visible"
