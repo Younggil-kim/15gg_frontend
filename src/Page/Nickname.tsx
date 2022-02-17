@@ -2,6 +2,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 const Wrapper = styled.div`
   width: 500px;
   height: 250px;
@@ -74,7 +75,7 @@ const CinfirmWrap = styled.form`
 `;
 
 function Nickname() {
-  const RIOT_API_KEY = "RGAPI-6beed917-e5ea-491c-b1d9-c6ce72d0c19c";
+  const RIOT_API_KEY = "RGAPI-d3d35938-3f51-4ec0-89ee-910af56fb6c6";
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [tier, setTier] = useState("");
@@ -96,6 +97,13 @@ function Nickname() {
       alert("없는 소환사 닉네임입니다.");
     }
   };
+  const SongList = () => {
+    return <div>SongList</div>
+  }
+  const mapStateToProps = (state: any) => {
+    console.log(state)
+    return state
+  }
   const fetchRank = async () => {
     try {
       const res = await axios.get(RANK_TIER_URL).then(function (response) {
@@ -110,6 +118,8 @@ function Nickname() {
     }
   };
 
+
+  connect(mapStateToProps)(SongList)
   const onChangeNick = (event: any) => {
     setName(event.target.value);
   };
@@ -127,6 +137,7 @@ function Nickname() {
 
   return (
     <Wrapper>
+      <SongList></SongList>
       <SubForm id="submitForm">
         <FormDiv>
           <Label>(필수)닉네임을 등록해주세요.</Label>

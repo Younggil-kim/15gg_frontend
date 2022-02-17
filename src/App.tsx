@@ -9,12 +9,13 @@ import Header from './Components/Header';
 import Chatting from './Page/Chatting';
 import MyInfo from './Page/MyInfo';
 import Nickname from './Page/Nickname';
+import Song from './Page/Song';
 
 function App() {
   return (
     <Router>
       <Header login={false} nickname="방패 주워주세요" tier="Gold 2"/>
-      
+      <Song></Song>
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/chatting" element={<Chatting />}></Route>

@@ -1,7 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import { createGlobalStyle } from "styled-components";
-import App from './App';
+
+import { Provider } from "react-redux";
+
+import App from "./App";
+import Reducers from "./Reducers";
+import { createStore } from "redux";
+
 const GlobalStyle = createGlobalStyle`
 body {
     margin: 0;
@@ -17,11 +23,14 @@ a {
     color: black;
 }
 
-`
+`;
+const store = createStore(Reducers)
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <App />
+    <Provider store={store}>
+      <GlobalStyle />
+      <App />
+    </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
