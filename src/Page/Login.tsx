@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 const Wrapper = styled.div`
   width: 500px;
   height: 400px;
@@ -59,21 +61,44 @@ function Login() {
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [body, setBody] = useState<Information | null>(null);
-
+  const history = useNavigate()
   const onChangeEmail = (event: any) => {
     setEmail(event.target.value);
   };
   const onChangePassword = (event: any) => {
     setPassword(event.target.value);
   };
-  const onSubmit = () => {
-    setBody({
-      ...body,
-      email: email,
-      password: password,
-    });
+  const dispatch = useDispatch();
+  const LOGIN_URL = '/auth/login'
+
+  const postLoginData = async () => {
+    try {
+      const body = {
+        email: email,
+        password: password
+      }
+      console.log(body)
+      const res = await axios.post(LOGIN_URL, body,{ withCredentials: true })
+      .then((res) => {
+        dispatch({type: 'LOG_IN'})
+        console.log(res)
+        console.log(res.data.nicknameId)
+        if(res.data.nicknameId === undefined){
+          history('/nickname')
+        }else{
+          history('/')
+        }
+      })
+      dispatch({type: 'NICKNAME', nickname : '미래전략실이호창'})
+    } catch (e) {
+      console.log(e);
+    }
   };
+  const onSubmit = () => {
+    postLoginData();
+  };
+
+
 
   return (
     <div>
@@ -91,7 +116,7 @@ function Login() {
               </select> */}
             </div>
             <Label>비밀번호</Label>
-            <Input onChange={onChangePassword} type="text" name="name" />
+            <Input onChange={onChangePassword} type="password" name="name" />
             <Btn form="loginForm" type="button" onClick={onSubmit}>
               로그인
             </Btn>

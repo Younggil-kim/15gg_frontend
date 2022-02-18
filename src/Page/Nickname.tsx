@@ -2,7 +2,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+
 const Wrapper = styled.div`
   width: 500px;
   height: 250px;
@@ -75,7 +75,7 @@ const CinfirmWrap = styled.form`
 `;
 
 function Nickname() {
-  const RIOT_API_KEY = "RGAPI-d3d35938-3f51-4ec0-89ee-910af56fb6c6";
+  const RIOT_API_KEY = "RGAPI-1c1054b3-a5d5-4994-945b-786e7c67a092";
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [tier, setTier] = useState("");
@@ -97,29 +97,67 @@ function Nickname() {
       alert("없는 소환사 닉네임입니다.");
     }
   };
-  const SongList = () => {
-    return <div>SongList</div>
+  function convertTier(tiers: string) {
+    if (tiers === "DIAMOND") {
+      return 1;
+    } else if (tiers === "PLATINUM") {
+      return 2;
+    } else if (tiers === "GOLD") {
+      return 3;
+    } else if (tiers === "SILVER") {
+      return 4;
+    } else if (tiers === "BRONZE") {
+      return 5;
+    } else if (tiers === "IRON") {
+      return 6;
+    }
   }
-  const mapStateToProps = (state: any) => {
-    console.log(state)
-    return state
+  function convertRank(ranks: string) {
+    if (ranks === "I") {
+      return 1;
+    } else if (ranks === "II") {
+      return 2;
+    } else if (ranks === "III") {
+      return 3;
+    } else if (ranks === "IV") {
+      return 4;
+    }
   }
+
   const fetchRank = async () => {
     try {
-      const res = await axios.get(RANK_TIER_URL).then(function (response) {
-        console.log(response.data[0]);
-        setTier(response.data[0].tier);
-        setRank(response.data[0].rank);
-        console.log(response.data[0].tier)
-        console.log(response.data[0].rank)
-      });
+      const res = await axios
+        .get(RANK_TIER_URL)
+        .then(function (response) {
+          console.log(response.data[0]);
+          setTier(response.data[0].tier);
+          setRank(response.data[0].rank);
+          const body = {
+            name: name,
+            tier: convertTier(response.data[0].tier),
+            rank: convertRank(response.data[0].rank),
+          };
+          return body;
+        })
+        .then(function (body) {
+          postNicknameData(body);
+        });
     } catch (e) {
       console.log(e);
     }
   };
 
+  const NICK_URL = "/myinfo/nickname";
+  const postNicknameData = async (body: any) => {
+    try {
+      console.log(body);
+      const res = await axios.post(NICK_URL, body);
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-  connect(mapStateToProps)(SongList)
   const onChangeNick = (event: any) => {
     setName(event.target.value);
   };
@@ -137,7 +175,6 @@ function Nickname() {
 
   return (
     <Wrapper>
-      <SongList></SongList>
       <SubForm id="submitForm">
         <FormDiv>
           <Label>(필수)닉네임을 등록해주세요.</Label>
@@ -154,9 +191,16 @@ function Nickname() {
             </CinfirmBtn>
           </CinfirmWrap>
           <Link to={"/nickname"}>
-            <Btn form="submitForm" type="button" onClick={onSubmit}>
-              등록하기
+            {
+              id.length === 0 ? 
+            <Btn form="submitForm" type="button" onClick={onSubmit} disabled>
+              닉네임 확인을 해주세요.
             </Btn>
+            :
+            <Btn form="submitForm" type="button" onClick={onSubmit}>
+            등록하기
+          </Btn>
+            }
           </Link>
         </FormDiv>
       </SubForm>

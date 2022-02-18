@@ -102,9 +102,6 @@ const Row = styled(motion.div)`
   position: absolute;
   width: 100vw;
 `;
-
-
-
 const BtnInfo = styled(motion.div)`
   padding: 10px;
   opacity: 0;
@@ -261,8 +258,6 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
 ];
-
-
 const datasRecent: Array<infoType> = [
   {
     nickname: "이즈리얼수빈이",
