@@ -42,6 +42,9 @@ function reducer(curState: any, action: any) {
     newState.nickname = action.nickname;
   }else if (action.type === 'LOG_OUT'){
     newState.login = false;
+    newState.nickname = "";
+    newState.tier = "";
+    newState.rank = "";
   }
   return newState;
   

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Wrapper = styled.div`
   width: 500px;
@@ -75,15 +76,15 @@ const CinfirmWrap = styled.form`
 `;
 
 function Nickname() {
-  const RIOT_API_KEY = "RGAPI-f1462d83-9d03-4fd6-b7cf-28719b837408";
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [tier, setTier] = useState("");
   const [rank, setRank] = useState("");
+  const [check, setCheck] = useState(false);
+  
+  const RIOT_API_KEY = "RGAPI-f1462d83-9d03-4fd6-b7cf-28719b837408";
   const NICKNAME_URL = `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${RIOT_API_KEY}`;
   const RANK_TIER_URL = `https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${RIOT_API_KEY}`;
-
-  const [check, setCheck] = useState(false);
 
   const fetchNickname = async () => {
     try {

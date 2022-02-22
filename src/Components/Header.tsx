@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import sitelogo from "../Static/Img/sitelogo.png";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import axios from 'axios';
 
 interface headerProps {
   login: boolean;
@@ -33,9 +36,32 @@ const Li = styled.li`
 `;
 
 function Header({ login, nickname, tier }: headerProps) {
+  const LOGOUT_URL = "/auth/logout";
+  const history = useNavigate()
+  const dispatch = useDispatch()
   const isLogin = useSelector((state: any) => state.login);
-  const nick = useSelector((state:any) => state.nickname);
-  console.log(isLogin)
+  const nick = useSelector((state: any) => state.nickname);
+  console.log(isLogin);
+
+  const logout = async () => {
+    try {
+
+      const res = await axios
+        .get(LOGOUT_URL, { withCredentials: true })
+        .then((res) => {
+          dispatch({ type: "LOG_OUT" });
+          console.log(res);
+          console.log(res.data.nicknameId);
+          if (res.data.nicknameId === undefined) {
+            history("/");
+          } else {
+            history("/");
+          }
+        });
+    } catch (e) {
+      console.log("hey",e);
+    }
+  };
   return (
     <Nav>
       <Div>
@@ -57,14 +83,14 @@ function Header({ login, nickname, tier }: headerProps) {
             <Link to={"/login"}>로그인</Link>
           )}
         </Li>
+        <Li>{isLogin ? <Link to={"/myinfo"}>내 정보 수정</Link> : null}</Li>
         <Li>
           {isLogin ? (
-            <Link to={"/myinfo"}>내 정보 수정</Link>
+            <button onClick={logout}>로그아웃</button>
           ) : (
-            null
+            <Link to={"/register"}>회원가입</Link>
           )}
         </Li>
-        <Li>{isLogin ? <Link to={""}>로그아웃</Link> : <Link to={"/register"}>회원가입</Link>}</Li>
       </Ul>
     </Nav>
   );
