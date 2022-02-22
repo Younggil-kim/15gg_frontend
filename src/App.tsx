@@ -1,4 +1,4 @@
-import ShowName from "./Page/showName";
+
 import Regeister from "./Page/Register";
 import Main from "./Page/Main";
 import "./Static/Font/font.css";

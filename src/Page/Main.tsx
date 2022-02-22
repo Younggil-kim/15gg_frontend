@@ -8,7 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
-
+import Modal from "../Components/Modal";
 import top from "../Static/Img/top.png";
 import jug from "../Static/Img/jug.png";
 import mid from "../Static/Img/mid.png";
@@ -43,11 +43,10 @@ const Box = styled(motion.div)`
   border-radius: 45px;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   font-size: 28px;
   box-shadow: 0 0 10px 2px rgba(100, 100, 100);
-  &:hover{
+  &:hover {
     height: 400px;
   }
   &:first-child {
@@ -56,6 +55,29 @@ const Box = styled(motion.div)`
   &:last-child {
     transform-origin: center right;
   }
+`;
+
+const Matching = styled(motion.div)`
+  width: 25px;
+  height: 25px;
+  background-color: rgb(234, 240, 241);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  &:hover{
+    background-color: rgb(132, 129, 122);
+    color: white;
+  }
+
+`;
+
+const TitleCon = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const Btn = styled.button`
@@ -75,10 +97,10 @@ const Btn = styled.button`
   }
 `;
 const LinkBtn = styled(Link)`
-&:hover {
-  background-color: rgb(132, 129, 122);
-  color: white;
-}
+  &:hover {
+    background-color: rgb(132, 129, 122);
+    color: white;
+  }
 `;
 
 const Text = styled.div`
@@ -97,7 +119,7 @@ const Row = styled(motion.div)`
   align-items: center;
   gap: 10px;
   grid-template-columns: repeat(6, 1fr);
-  
+
   margin-bottom: 5px;
   position: absolute;
   width: 100vw;
@@ -378,8 +400,6 @@ function Main() {
   const [back, setBack] = useState(false);
   const [backRecent, setBackRecent] = useState(false);
 
-
-
   const rowVarRecent = {
     hidden: {
       x: windowSize + 10,
@@ -387,14 +407,13 @@ function Main() {
     visible: {
       x: 0,
     },
-    exit:{
+    exit: {
       x: -windowSize - 10,
     },
   };
 
-
   const increaseIdx = () => {
-    setBack(false)
+    setBack(false);
     if (datas) {
       if (leaving) return;
       toggleLeaving();
@@ -405,20 +424,19 @@ function Main() {
     }
   };
   const decreaseIdx = () => {
-    setBack(true)
-    if(datas){
+    setBack(true);
+    if (datas) {
       if (leaving) return;
       toggleLeaving();
       const totalInfo = datas.length;
       const maxIdx = Math.floor(totalInfo / offset) - 1;
-      setIdx((prev) => (prev === 0 ? maxIdx : prev - 1))
+      setIdx((prev) => (prev === 0 ? maxIdx : prev - 1));
       setWindowSize(window.outerWidth);
     }
-  }
-
+  };
 
   const increaseIdxRecent = () => {
-    setBackRecent(false)
+    setBackRecent(false);
     if (datasRecent) {
       if (recentLeaving) return;
       toggleLeavingRecent();
@@ -426,20 +444,20 @@ function Main() {
       const maxIdx = Math.floor(totalInfo / offset) - 1;
       setRecentIdx((prev) => (prev === maxIdx ? 0 : prev + 1));
       setWindowSize(window.outerWidth);
-      setBackRecent(false)
+      setBackRecent(false);
     }
   };
   const decreaseIdxRecent = () => {
-    setBackRecent(false)
+    setBackRecent(false);
     if (datasRecent) {
       if (recentLeaving) return;
       toggleLeavingRecent();
       const totalInfo = datas.length;
-  
+
       const maxIdx = Math.floor(totalInfo / offset) - 1;
       setRecentIdx((prev) => (prev === 0 ? maxIdx : prev - 1));
       setWindowSize(window.outerWidth);
-      setBackRecent(true)
+      setBackRecent(true);
     }
   };
   const toggleLeaving = () => setLeaving((prev) => !prev);
@@ -447,20 +465,44 @@ function Main() {
 
   const rowVar = {
     hidden: (back: boolean) => ({
-      x:  back? -windowSize-10 : windowSize+10 
+      x: back ? -windowSize - 10 : windowSize + 10,
     }),
     visible: {
       x: 0,
     },
     exit: (back: boolean) => ({
-      x: back? +windowSize + 10 : -windowSize-10 
+      x: back ? +windowSize + 10 : -windowSize - 10,
     }),
+  };
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
   };
 
   return (
     <div>
       <div>
-        <Text>추천 매칭</Text>
+        <TitleCon>
+          <Text>추천 매칭</Text>
+          <Matching onClick={openModal}>?</Matching>
+          {modalVisible && (
+            <Modal
+              visible={modalVisible}
+              closable={true}
+              maskClosable={true}
+              onClose={closeModal}
+            >
+              <span>
+              듀오를 추천해주는 시스템입니다.<br />
+              정확한 매칭을 원하시면, 내 정보 수정 탭에서 정보를 입력해주세요.
+              </span>
+            </Modal>
+          )}
+        </TitleCon>
         <Wrapper>
           <AnimatePresence
             exitBeforeEnter={true}
@@ -469,8 +511,8 @@ function Main() {
             custom={back}
           >
             <Row
-            // number={Math.floor(windowSize/300)}
-            custom={back}
+              // number={Math.floor(windowSize/300)}
+              custom={back}
               variants={rowVar}
               initial="hidden"
               animate="visible"
@@ -558,59 +600,61 @@ function Main() {
               key={idxRecent}
               custom={backRecent}
             >
-              {datasRecent.slice(offset * idxRecent, offset * idxRecent + offset).map((data) => (
-                <Box
-                  variants={BoxVar}
-                  whileHover="hover"
-                  initial="noraml"
-                  key={data.nickname}
-                >
-                  <div style={{ marginTop: 10 }}>{data.nickname}</div>
+              {datasRecent
+                .slice(offset * idxRecent, offset * idxRecent + offset)
+                .map((data) => (
+                  <Box
+                    variants={BoxVar}
+                    whileHover="hover"
+                    initial="noraml"
+                    key={data.nickname}
+                  >
+                    <div style={{ marginTop: 10 }}>{data.nickname}</div>
 
-                  <br />
-                  <div>
-                    <div style={{ fontSize: 20 }}>티어</div>
-                    <img
-                      src={gm}
-                      alt=""
-                      style={{ width: 30, height: 30, marginTop: 5 }}
-                    />
-
+                    <br />
                     <div>
-                      <div style={{ fontSize: 20 }}>라인</div>
+                      <div style={{ fontSize: 20 }}>티어</div>
                       <img
-                        src={ad}
+                        src={gm}
                         alt=""
                         style={{ width: 30, height: 30, marginTop: 5 }}
                       />
 
-                      <br />
-                      <div style={{ fontSize: 20 }}>찾는 라인</div>
-                      <img
-                        src={sup}
-                        alt=""
-                        style={{ width: 30, height: 30, marginTop: 5 }}
-                      />
+                      <div>
+                        <div style={{ fontSize: 20 }}>라인</div>
+                        <img
+                          src={ad}
+                          alt=""
+                          style={{ width: 30, height: 30, marginTop: 5 }}
+                        />
+
+                        <br />
+                        <div style={{ fontSize: 20 }}>찾는 라인</div>
+                        <img
+                          src={sup}
+                          alt=""
+                          style={{ width: 30, height: 30, marginTop: 5 }}
+                        />
+                      </div>
+
+                      <div style={{ fontSize: 20 }}>플레이스타일 : 빡겜</div>
+
+                      <div style={{ fontSize: 20 }}>보이스: 가능</div>
+                      <BtnInfo variants={infoVar}>
+                        <Btn
+                          as="a"
+                          href="https://www.op.gg/summoner/userName=미래전략실이호창"
+                          target="_blank"
+                        >
+                          전적확인
+                        </Btn>
+                        <Btn type="button">
+                          <LinkBtn to={"/Chatting"}>듀오신청</LinkBtn>
+                        </Btn>
+                      </BtnInfo>
                     </div>
-
-                    <div style={{ fontSize: 20 }}>플레이스타일 : 빡겜</div>
-
-                    <div style={{ fontSize: 20 }}>보이스: 가능</div>
-                    <BtnInfo variants={infoVar}>
-                      <Btn
-                        as="a"
-                        href="https://www.op.gg/summoner/userName=미래전략실이호창"
-                        target="_blank"
-                      >
-                        전적확인
-                      </Btn>
-                      <Btn type="button">
-                        <LinkBtn to={"/Chatting"}>듀오신청</LinkBtn>
-                      </Btn>
-                    </BtnInfo>
-                  </div>
-                </Box>
-              ))}
+                  </Box>
+                ))}
             </Row>
           </AnimatePresence>
         </Wrapper>
