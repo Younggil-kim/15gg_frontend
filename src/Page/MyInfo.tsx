@@ -8,10 +8,10 @@ import {
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 interface userInfo {
   nickname: string;
-
 }
 
 const Container = styled.div`
@@ -30,14 +30,14 @@ const Container = styled.div`
   background-color: rgb(236, 240, 241);
   border-radius: 10px;
 `;
-const Submit = styled.input`
+const Submit = styled.button`
   width: 100%;
-  margin-top : 10px;
-  margin-bottom : 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 20px;
   border-radius: 15px;
-  cursor:pointer;
-  &:hover{
+  cursor: pointer;
+  &:hover {
     background-color: rgb(132, 129, 122);
     color: white;
   }
@@ -46,71 +46,217 @@ const Info = styled.input`
   width: 100%;
   height: 50px;
   border-radius: 15px;
-`
+`;
 
 function MyInfo() {
+  const [ment, setMent] = useState("");
+  const [myPosi, setMyPosi] = useState("");
+  const [duoPosi, setDuoPosi] = useState("");
+  const [style, setStyle] = useState("");
+  const [voice, setVoice] = useState("");
+  const [duo, setDuo] = useState("");
+
+  const onChangeMent = (event: any) => {
+    setMent(event.target.value);
+  };
+  const onChangeMyPosi = (event: any) => {
+    setMyPosi(event.target.value);
+  };
+  const onChangeDuoPosi = (event: any) => {
+    setDuoPosi(event.target.value);
+  };
+
+  const onChangeStyle = (event: any) => {
+    setStyle(event.target.value);
+  };
+  const onChangeVoice = (event: any) => {
+    setVoice(event.target.value);
+  };
+  const onChangeDuo = (event: any) => {
+    setDuo(event.target.value);
+  };
+  const onClick = () => {
+    const body = {
+      ment: ment,
+      myPosi: myPosi,
+      duoPosi: duoPosi,
+      style: style,
+      voice: voice,
+      duo: duo,
+    };
+    console.log(body);
+  };
+  const nick = useSelector((state: any) => state.nickname);
   return (
     <div>
       <Container>
-        <h1>"방패주워주는수빈이"님의 듀오 모집 정보</h1>
+        <h1>"{nick}"님의 듀오 모집 정보</h1>
         <form>
           <section>
             <h2>소개글</h2>
-            <Info type="text" placeholder=""></Info>
+            <Info
+              onChange={onChangeMent}
+              type="text"
+              placeholder="간략하게 소개를 작성해주세요."
+            ></Info>
           </section>
           <section>
             <h2>선호 포지션</h2>
-            <input type="radio" name="radio1" id="top" value="top" />
+            <input
+              onChange={onChangeMyPosi}
+              type="radio"
+              name="radio1"
+              id="top"
+              value="top"
+            />
             <label htmlFor="top">Top</label>
-            <input type="radio" name="radio1" id="jug" value="jug" />
+            <input
+              onChange={onChangeMyPosi}
+              type="radio"
+              name="radio1"
+              id="jug"
+              value="jug"
+            />
             <label htmlFor="jug">Jug</label>
-            <input type="radio" name="radio1" id="mid" value="mid" />
+            <input
+              onChange={onChangeMyPosi}
+              type="radio"
+              name="radio1"
+              id="mid"
+              value="mid"
+            />
             <label htmlFor="mid">Mid</label>
-            <input type="radio" name="radio1" id="ad" value="ad" />
+            <input
+              onChange={onChangeMyPosi}
+              type="radio"
+              name="radio1"
+              id="ad"
+              value="ad"
+            />
             <label htmlFor="ad">AD</label>
-            <input type="radio" name="radio1" id="sup" value="sup" />
+            <input
+              onChange={onChangeMyPosi}
+              type="radio"
+              name="radio1"
+              id="sup"
+              value="sup"
+            />
             <label htmlFor="sup">Sup</label>
           </section>
           <section>
             <h2>듀오 희망 포지션</h2>
-            <input type="radio" name="radio2" id="top1" value="top" />
+            <input
+              onChange={onChangeDuoPosi}
+              type="radio"
+              name="radio2"
+              id="top1"
+              value="top"
+            />
             <label htmlFor="top1">Top</label>
-            <input type="radio" name="radio2" id="jug1" value="jug" />
+            <input
+              onChange={onChangeDuoPosi}
+              type="radio"
+              name="radio2"
+              id="jug1"
+              value="jug"
+            />
             <label htmlFor="jug1">Jug</label>
-            <input type="radio" name="radio2" id="mid1" value="mid" />
+            <input
+              onChange={onChangeDuoPosi}
+              type="radio"
+              name="radio2"
+              id="mid1"
+              value="mid"
+            />
             <label htmlFor="mid1">Mid</label>
-            <input type="radio" name="radio2" id="ad1" value="ad" />
+            <input
+              onChange={onChangeDuoPosi}
+              type="radio"
+              name="radio2"
+              id="ad1"
+              value="ad"
+            />
             <label htmlFor="ad1">AD</label>
-            <input type="radio" name="radio2" id="sup1" value="sup" />
+            <input
+              onChange={onChangeDuoPosi}
+              type="radio"
+              name="radio2"
+              id="sup1"
+              value="sup"
+            />
             <label htmlFor="sup1">Sup</label>
           </section>
           <section>
             <h2>희망 플레이스타일</h2>
-            <input type="radio" name="radio3" id="soft" value="즐겜" />
+            <input
+              onChange={onChangeStyle}
+              type="radio"
+              name="radio3"
+              id="soft"
+              value="즐겜"
+            />
             <label htmlFor="soft">즐겜</label>
-            <input type="radio" name="radio3" id="half" value="중간" />
+            <input
+              onChange={onChangeStyle}
+              type="radio"
+              name="radio3"
+              id="half"
+              value="중간"
+            />
             <label htmlFor="half">중간</label>
-            <input type="radio" name="radio3" id="hard" value="빡겜" />
+            <input
+              onChange={onChangeStyle}
+              type="radio"
+              name="radio3"
+              id="hard"
+              value="빡겜"
+            />
             <label htmlFor="hard">빡겜</label>
           </section>
 
           <section>
             <h2>보이스</h2>
-            <input type="radio" name="radio4" id="voiceOn" value="on" />
+            <input
+              onChange={onChangeVoice}
+              type="radio"
+              name="radio4"
+              id="voiceOn"
+              value="on"
+            />
             <label htmlFor="voiceOn">가능</label>
-            <input type="radio" name="radio4" id="voiceOff" value="off" />
+            <input
+              onChange={onChangeVoice}
+              type="radio"
+              name="radio4"
+              id="voiceOff"
+              value="off"
+            />
             <label htmlFor="voiceOff">불가능</label>
           </section>
 
           <section>
             <h2>듀오 모집 여부</h2>
-            <input type="radio" name="radio5" id="on" value="on" />
+            <input
+              onChange={onChangeDuo}
+              type="radio"
+              name="radio5"
+              id="on"
+              value="on"
+            />
             <label htmlFor="on">ON</label>
-            <input type="radio" name="radio5" id="off" value="off" />
+            <input
+              onChange={onChangeDuo}
+              type="radio"
+              name="radio5"
+              id="off"
+              value="off"
+            />
             <label htmlFor="off">OFF</label>
           </section>
 
-          <Submit type="submit" value="Submit" />
+          <Submit type="button" value="Submit" onClick={onClick}>
+            정보수정
+          </Submit>
         </form>
       </Container>
     </div>

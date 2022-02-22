@@ -57,7 +57,14 @@ function Header({ login, nickname, tier }: headerProps) {
             <Link to={"/login"}>로그인</Link>
           )}
         </Li>
-        <Li>{isLogin ? null : <Link to={"/register"}>회원가입</Link>}</Li>
+        <Li>
+          {isLogin ? (
+            <Link to={"/myinfo"}>내 정보 수정</Link>
+          ) : (
+            null
+          )}
+        </Li>
+        <Li>{isLogin ? <Link to={""}>로그아웃</Link> : <Link to={"/register"}>회원가입</Link>}</Li>
       </Ul>
     </Nav>
   );

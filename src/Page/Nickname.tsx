@@ -75,7 +75,7 @@ const CinfirmWrap = styled.form`
 `;
 
 function Nickname() {
-  const RIOT_API_KEY = "RGAPI-1c1054b3-a5d5-4994-945b-786e7c67a092";
+  const RIOT_API_KEY = "RGAPI-f1462d83-9d03-4fd6-b7cf-28719b837408";
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [tier, setTier] = useState("");

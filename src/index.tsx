@@ -40,6 +40,8 @@ function reducer(curState: any, action: any) {
     newState.login = true;
   }else if (action.type === 'NICKNAME'){
     newState.nickname = action.nickname;
+  }else if (action.type === 'LOG_OUT'){
+    newState.login = false;
   }
   return newState;
   
