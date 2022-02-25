@@ -82,14 +82,15 @@ function Login() {
       .then((res) => {
         dispatch({type: 'LOG_IN'})
         console.log(res)
-        console.log(res.data.nicknameId)
-        if(res.data.nicknameId === undefined){
-          history('/nickname')
-        }else{
+        console.log(res.data.nickname)
+        if(res.data.data.nickname){
           history('/')
+          dispatch({type: 'NICKNAME', nickname : res.data.data.nickname})
+        }else{
+          history('/nickname')
         }
       })
-      dispatch({type: 'NICKNAME', nickname : '미래전략실이호창'})
+
     } catch (e) {
       console.log(e);
     }

@@ -475,26 +475,33 @@ function Main() {
     }),
   };
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const openModal = () => {
-    setModalVisible(true);
+  const [modalVisibleRcm, setModalVisibleRcm] = useState(false);
+  const openModalRcm = () => {
+    setModalVisibleRcm(true);
   };
-  const closeModal = () => {
-    setModalVisible(false);
+  const closeModalRcm = () => {
+    setModalVisibleRcm(false);
   };
 
+  const [modalVisibleRct, setModalVisibleRct] = useState(false);
+  const openModalRct = () => {
+    setModalVisibleRct(true);
+  };
+  const closeModalRct = () => {
+    setModalVisibleRct(false);
+  };
   return (
     <div>
       <div>
         <TitleCon>
           <Text>추천 매칭</Text>
-          <Matching onClick={openModal}>?</Matching>
-          {modalVisible && (
+          <Matching onClick={openModalRcm}>?</Matching>
+          {modalVisibleRcm && (
             <Modal
-              visible={modalVisible}
+              visible={modalVisibleRcm}
               closable={true}
               maskClosable={true}
-              onClose={closeModal}
+              onClose={closeModalRcm}
             >
               <span>
               듀오를 추천해주는 시스템입니다.<br />
@@ -582,7 +589,23 @@ function Main() {
         </SlidBtnWrapper>
       </div>
       <div>
+        <TitleCon>
         <Text>신규 매칭</Text>
+        <Matching onClick={openModalRct}>?</Matching>
+          {modalVisibleRct && (
+            <Modal
+              visible={modalVisibleRct}
+              closable={true}
+              maskClosable={true}
+              onClose={closeModalRct}
+            >
+              <span>
+              가장 최근에 등록된 소환사를 매칭해주는 시스템입니다.<br />
+              설정된 라인에 관계없이 모든 라인을 보여줍니다.
+              </span>
+            </Modal>
+          )}
+        </TitleCon>
         <Wrapper>
           <AnimatePresence
             exitBeforeEnter={true}

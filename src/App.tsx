@@ -1,4 +1,4 @@
-
+import React, { useEffect } from "react";
 import Regeister from "./Page/Register";
 import Main from "./Page/Main";
 import "./Static/Font/font.css";
@@ -14,7 +14,9 @@ import { useSelector } from "react-redux";
 function App() {
   const nickname = useSelector((state : any) => state.nickname)
   const isLogin = useSelector((state: any)=> state.login )
+  useEffect(() => {
 
+  },[])
   return (
     <Router>
       <Header login={false} nickname="방패 주워주세요" tier="Gold 2" />

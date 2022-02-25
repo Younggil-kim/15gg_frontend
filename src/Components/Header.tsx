@@ -51,7 +51,7 @@ function Header({ login, nickname, tier }: headerProps) {
         .then((res) => {
           dispatch({ type: "LOG_OUT" });
           console.log(res);
-          console.log(res.data.nicknameId);
+          console.log(res.data.nickname);
           if (res.data.nicknameId === undefined) {
             history("/");
           } else {
