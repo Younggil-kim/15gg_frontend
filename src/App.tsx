@@ -8,15 +8,34 @@ import Header from "./Components/Header";
 import Chatting from "./Page/Chatting";
 import MyInfo from "./Page/MyInfo";
 import Nickname from "./Page/Nickname";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 function App() {
-  const nickname = useSelector((state : any) => state.nickname)
-  const isLogin = useSelector((state: any)=> state.login )
-  useEffect(() => {
+  const nickname = useSelector((state: any) => state.nickname);
+  const isLogin = useSelector((state: any) => state.login);
+  const STATUS_URL = "/auth/status";
+  const dispatch = useDispatch();
+  const setData = async () => {
+    try {
+      const res = await axios
+        .get(STATUS_URL, { withCredentials: true })
+        .then((res) => {
+          console.log(res);
+          dispatch({ type: "LOG_IN" });
+          dispatch({ type: "NICKNAME", nickname: res.data.data });
+        });
+    } catch (e) {
+      console.log(e);
+      dispatch({type: "LOG_OUT"})
+    }
+  };
 
-  },[])
+  useEffect(() => {
+    // /auth/status
+    setData();
+    //
+  }, []);
   return (
     <Router>
       <Header login={false} nickname="방패 주워주세요" tier="Gold 2" />

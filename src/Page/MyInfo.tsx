@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import axios from 'axios'
 
 interface userInfo {
   nickname: string;
@@ -75,16 +76,44 @@ function MyInfo() {
   const onChangeDuo = (event: any) => {
     setDuo(event.target.value);
   };
-  const onClick = () => {
+  const INFO_URL = '/myinfo'
+
+  const duoInfo =async () => {
     const body = {
       ment: ment,
-      myPosi: myPosi,
-      duoPosi: duoPosi,
-      style: style,
+      selfPos: myPosi,
+      duoPos: duoPosi,
+      playStyle: style,
       voice: voice,
-      duo: duo,
+      status: duo,
     };
-    console.log(body);
+    if (
+      body.ment.length === 0 ||
+      body.selfPos.length === 0 ||
+      body.duoPos.length === 0 ||
+      body.playStyle.length === 0 ||
+      body.voice.length === 0 ||
+      body.status.length === 0
+    ) {
+      alert("모든 정보를 입력해 주세요.")
+    }else{
+      console.log(body)
+      try{
+        const res = await axios.patch(INFO_URL,body,{withCredentials:true})
+        .then((res) => {
+          console.log(res)
+        })
+      }catch(e){
+        console.log(e)
+      }
+    }
+
+  }
+
+  const onClick = () => {
+
+    duoInfo()
+
   };
   const nick = useSelector((state: any) => state.nickname);
   return (
@@ -107,7 +136,7 @@ function MyInfo() {
               type="radio"
               name="radio1"
               id="top"
-              value="top"
+              value="1"
             />
             <label htmlFor="top">Top</label>
             <input
@@ -115,7 +144,7 @@ function MyInfo() {
               type="radio"
               name="radio1"
               id="jug"
-              value="jug"
+              value="2"
             />
             <label htmlFor="jug">Jug</label>
             <input
@@ -123,7 +152,7 @@ function MyInfo() {
               type="radio"
               name="radio1"
               id="mid"
-              value="mid"
+              value="3"
             />
             <label htmlFor="mid">Mid</label>
             <input
@@ -131,7 +160,7 @@ function MyInfo() {
               type="radio"
               name="radio1"
               id="ad"
-              value="ad"
+              value="4"
             />
             <label htmlFor="ad">AD</label>
             <input
@@ -139,7 +168,7 @@ function MyInfo() {
               type="radio"
               name="radio1"
               id="sup"
-              value="sup"
+              value="5"
             />
             <label htmlFor="sup">Sup</label>
           </section>
@@ -150,7 +179,7 @@ function MyInfo() {
               type="radio"
               name="radio2"
               id="top1"
-              value="top"
+              value="1"
             />
             <label htmlFor="top1">Top</label>
             <input
@@ -158,7 +187,7 @@ function MyInfo() {
               type="radio"
               name="radio2"
               id="jug1"
-              value="jug"
+              value="2"
             />
             <label htmlFor="jug1">Jug</label>
             <input
@@ -166,7 +195,7 @@ function MyInfo() {
               type="radio"
               name="radio2"
               id="mid1"
-              value="mid"
+              value="3"
             />
             <label htmlFor="mid1">Mid</label>
             <input
@@ -174,7 +203,7 @@ function MyInfo() {
               type="radio"
               name="radio2"
               id="ad1"
-              value="ad"
+              value="4"
             />
             <label htmlFor="ad1">AD</label>
             <input
@@ -182,7 +211,7 @@ function MyInfo() {
               type="radio"
               name="radio2"
               id="sup1"
-              value="sup"
+              value="5"
             />
             <label htmlFor="sup1">Sup</label>
           </section>
@@ -193,7 +222,7 @@ function MyInfo() {
               type="radio"
               name="radio3"
               id="soft"
-              value="즐겜"
+              value="1"
             />
             <label htmlFor="soft">즐겜</label>
             <input
@@ -201,7 +230,7 @@ function MyInfo() {
               type="radio"
               name="radio3"
               id="half"
-              value="중간"
+              value="2"
             />
             <label htmlFor="half">중간</label>
             <input
@@ -209,7 +238,7 @@ function MyInfo() {
               type="radio"
               name="radio3"
               id="hard"
-              value="빡겜"
+              value="3"
             />
             <label htmlFor="hard">빡겜</label>
           </section>
@@ -221,7 +250,7 @@ function MyInfo() {
               type="radio"
               name="radio4"
               id="voiceOn"
-              value="on"
+              value="1"
             />
             <label htmlFor="voiceOn">가능</label>
             <input
@@ -229,7 +258,7 @@ function MyInfo() {
               type="radio"
               name="radio4"
               id="voiceOff"
-              value="off"
+              value="0"
             />
             <label htmlFor="voiceOff">불가능</label>
           </section>
@@ -241,7 +270,7 @@ function MyInfo() {
               type="radio"
               name="radio5"
               id="on"
-              value="on"
+              value="1"
             />
             <label htmlFor="on">ON</label>
             <input
@@ -249,7 +278,7 @@ function MyInfo() {
               type="radio"
               name="radio5"
               id="off"
-              value="off"
+              value="0"
             />
             <label htmlFor="off">OFF</label>
           </section>

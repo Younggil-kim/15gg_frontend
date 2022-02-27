@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { createGlobalStyle } from "styled-components";
 import App from "./App";
@@ -11,12 +11,11 @@ body {
     margin: 0;
     
 }
-
 *{
     font-family: "maple";
     box-sizing: border-box;
 }
-a {
+a{
     text-decoration: none;
     color: black;
 }
@@ -51,6 +50,8 @@ function reducer(curState: any, action: any) {
 }
 
 const store = createStore(reducer)
+
+
 
 ReactDOM.render(
   <React.StrictMode>

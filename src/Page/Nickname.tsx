@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Wrapper = styled.div`
@@ -53,8 +53,7 @@ const Btn = styled.button`
     background-color: rgb(132, 129, 122);
     color: white;
   }
-}
-`;
+}`;
 const CinfirmBtn = styled.button`
   background-color: rgb(209, 204, 192);
   color: black;
@@ -81,10 +80,9 @@ function Nickname() {
   const [tier, setTier] = useState("");
   const [rank, setRank] = useState("");
   const [check, setCheck] = useState(false);
-  
-  const RIOT_API_KEY = "RGAPI-f1462d83-9d03-4fd6-b7cf-28719b837408";
-  const NICKNAME_URL = `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${RIOT_API_KEY}`;
-  const RANK_TIER_URL = `https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${RIOT_API_KEY}`;
+  const history = useNavigate();
+  const NICKNAME_URL = `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${process.env.REACT_APP_RIOT_API_KEY}`;
+  const RANK_TIER_URL = `https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_RIOT_API_KEY}`;
 
   const fetchNickname = async () => {
     try {
@@ -152,7 +150,8 @@ function Nickname() {
   const postNicknameData = async (body: any) => {
     try {
       console.log(body);
-      const res = await axios.post(NICK_URL, body);
+      const res = await axios.post(NICK_URL, body, { withCredentials: true });
+      history("/");
       console.log(res);
     } catch (e) {
       console.log(e);
@@ -192,16 +191,15 @@ function Nickname() {
             </CinfirmBtn>
           </CinfirmWrap>
           <Link to={"/nickname"}>
-            {
-              id.length === 0 ? 
-            <Btn form="submitForm" type="button" onClick={onSubmit} disabled>
-              닉네임 확인을 해주세요.
-            </Btn>
-            :
-            <Btn form="submitForm" type="button" onClick={onSubmit}>
-            등록하기
-          </Btn>
-            }
+            {id.length === 0 ? (
+              <Btn form="submitForm" type="button" onClick={onSubmit} disabled>
+                닉네임 확인을 해주세요.
+              </Btn>
+            ) : (
+              <Btn form="submitForm" type="button" onClick={onSubmit}>
+                등록하기
+              </Btn>
+            )}
           </Link>
         </FormDiv>
       </SubForm>

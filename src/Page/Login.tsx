@@ -50,8 +50,7 @@ const Btn = styled.button`
     background-color: rgb(132, 129, 122);
     color: white;
   }
-}
-`;
+}`
 
 function Login() {
   type Information = {
