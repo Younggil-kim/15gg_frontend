@@ -3,9 +3,6 @@
 # env
 .env
 
-# proxy
-package.json
-
 # dependencies
 /node_modules
 /.pnp
