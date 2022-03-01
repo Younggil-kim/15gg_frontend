@@ -50,13 +50,12 @@ const Btn = styled.button`
     background-color: rgb(132, 129, 122);
     color: white;
   }
-}`
+}`;
 
 function Login() {
-
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const history = useNavigate()
+  const history = useNavigate();
   const onChangeEmail = (event: any) => {
     setEmail(event.target.value);
   };
@@ -64,34 +63,32 @@ function Login() {
     setPassword(event.target.value);
   };
   const dispatch = useDispatch();
-  const LOGIN_URL = '/auth/login'
+  const LOGIN_URL = "/auth/login";
 
   const postLoginData = async () => {
     try {
       const body = {
         email: email,
-        password: password
-      }
-      const res = await axios.post(LOGIN_URL, body,{ withCredentials: true })
-      .then((res) => {
-        dispatch({type: 'LOG_IN'})
-        if(res.data.data.nickname){
-          history('/')
-          dispatch({type: 'NICKNAME', nickname : res.data.data.nickname})
-        }else{
-          history('/nickname')
-        }
-      })
-
+        password: password,
+      };
+      const res = await axios
+        .post(LOGIN_URL, body, { withCredentials: true })
+        .then((res) => {
+          dispatch({ type: "LOG_IN" });
+          if (res.data.data.nickname) {
+            history("/");
+            dispatch({ type: "NICKNAME", nickname: res.data.data.nickname });
+          } else {
+            history("/nickname");
+          }
+        });
     } catch (e) {
-      console.log(e);
+      alert("오류가 발생했습니다.");
     }
   };
   const onSubmit = () => {
     postLoginData();
   };
-
-
 
   return (
     <div>

@@ -103,7 +103,7 @@ function MyInfo() {
           alert("정보 수정에 성공하셨습니다.")
         })
       }catch(e){
-        console.log(e)
+        alert("오류가 발생했습니다.");
       }
     }
 

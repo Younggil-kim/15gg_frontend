@@ -58,7 +58,7 @@ function Header() {
           }
         });
     } catch (e) {
-      console.log(e);
+      alert("오류가 발생했습니다.");
     }
   };
   return (

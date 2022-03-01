@@ -9,9 +9,7 @@ const Img = styled.img`
   
 `;
 function naver() {
-  const CLIENT_ID = "8MVocxz758hUEVmuq0vc";
-  const REDIRECT_URI = "http://localhost:3000/naver/callback";
-  const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&state=state`;
+  const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_API_ID}&redirect_uri=${process.env.REACT_APP_NAVER_REDIRECT_URL}&state=state`;
 
   return (
     <a href={NAVER_AUTH_URL}>

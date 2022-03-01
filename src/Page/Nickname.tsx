@@ -95,7 +95,7 @@ function Nickname() {
       }
     } catch (e) {
       alert("없는 소환사 닉네임입니다.");
-      console.log(e);
+      
     }
   };
   function convertTier(tiers: string) {
@@ -143,7 +143,7 @@ function Nickname() {
           postNicknameData(body);
         });
     } catch (e) {
-      console.log(e);
+      alert("오류가 발생했습니다.");
     }
   };
 
@@ -153,7 +153,7 @@ function Nickname() {
       const res = await axios.post(NICK_URL, body, { withCredentials: true });
       history("/");
     } catch (e) {
-      console.log(e);
+      alert("오류가 발생했습니다.");
     }
   };
 

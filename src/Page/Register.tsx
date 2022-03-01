@@ -85,7 +85,7 @@ function Regeister() {
         })
       }
     } catch(e) {
-      console.log(e)
+      alert("오류가 발생했습니다.");
     }
   }
 
@@ -127,8 +127,8 @@ function Regeister() {
             <Btn form="regiForm" type="button" onClick={onSubmit}>
               가입하기
             </Btn>
-            <Kakao></Kakao>
-            <Naver></Naver>
+            {/* <Kakao></Kakao>
+            <Naver></Naver> */}
           </FormDiv>
         </Form>
 

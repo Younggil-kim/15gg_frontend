@@ -25,7 +25,7 @@ function App() {
           dispatch({ type: "NICKNAME", nickname: res.data.data });
         });
     } catch (e) {
-      console.log(e);
+
       dispatch({type: "LOG_OUT"})
     }
   };
