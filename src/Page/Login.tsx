@@ -63,7 +63,7 @@ function Login() {
     setPassword(event.target.value);
   };
   const dispatch = useDispatch();
-  const LOGIN_URL = "/auth/login";
+  const LOGIN_URL = "http://3.36.69.51/auth/login";
 
   const postLoginData = async () => {
     try {
