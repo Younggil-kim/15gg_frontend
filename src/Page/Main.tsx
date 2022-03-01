@@ -666,7 +666,7 @@ function Main() {
                       <BtnInfo variants={infoVar}>
                         <Btn
                           as="a"
-                          href="https://www.op.gg/summoner/userName=미래전략실이호창"
+                          href="https://www.op.gg/summoner/userName=이젠숨기지도않음"
                           target="_blank"
                         >
                           전적확인
