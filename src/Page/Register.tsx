@@ -2,7 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import Kakao from "../Components/Kakao";
 import Naver from "../Components/Naver";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Wrapper = styled.div`
   width: 500px;
   height: 450px;
@@ -67,7 +68,26 @@ function Regeister() {
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
-  const [body, setBody] = useState<Information | null>(null);
+  const history = useNavigate()
+  const SIGN_UP_URL = "/auth/signup"
+
+  const postSingUp =async () => {
+    try {
+      const body = {
+        email: email,
+        password : password,
+        passwordVeri : checkPw,
+      }
+      if (body.password === body.passwordVeri){
+        const res = await axios.post(SIGN_UP_URL, body)
+        .then((res) => {
+          history('/login')
+        })
+      }
+    } catch(e) {
+      console.log(e)
+    }
+  }
 
   const onChangeEmail = (event: any) => {
     setEmail(event.target.value);
@@ -85,15 +105,7 @@ function Regeister() {
     setCheckPw(event.target.value);
   };
   const onSubmit = () => {
-    setBody({
-      ...body,
-      email: email,
-      authNum: authNum,
-      nickname: nickname,
-      password: password,
-      checkPw: checkPw,
-    });
-    console.log(body);
+    postSingUp()
   };
 
   return (
@@ -104,14 +116,14 @@ function Regeister() {
           <FormDiv>
             <Label>이메일</Label>
             <Input onChange={onChangeEmail} type="text" name="name" />
-            <Label>인증번호</Label>
-            <Input onChange={onChangeAuthNum} type="number" name="name" />
+            {/* <Label>인증번호</Label>
+            <Input onChange={onChangeAuthNum} type="number" name="name" /> */}
             {/* <Label>닉네임</Label>
             <Input onChange={onChangeNickname} type="text" name="name" /> */}
             <Label>비밀번호</Label>
-            <Input onChange={onChangePassword} type="text" name="name" />
+            <Input onChange={onChangePassword} type="password" name="name" />
             <Label>비밀번호 확인</Label>
-            <Input onChange={onChangeCheckPw} type="text" name="name" />
+            <Input onChange={onChangeCheckPw} type="password" name="name" />
             <Btn form="regiForm" type="button" onClick={onSubmit}>
               가입하기
             </Btn>

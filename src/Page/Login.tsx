@@ -53,10 +53,6 @@ const Btn = styled.button`
 }`
 
 function Login() {
-  type Information = {
-    email: string;
-    password: string;
-  };
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -76,12 +72,9 @@ function Login() {
         email: email,
         password: password
       }
-      console.log(body)
       const res = await axios.post(LOGIN_URL, body,{ withCredentials: true })
       .then((res) => {
         dispatch({type: 'LOG_IN'})
-        console.log(res)
-        console.log(res.data.nickname)
         if(res.data.data.nickname){
           history('/')
           dispatch({type: 'NICKNAME', nickname : res.data.data.nickname})

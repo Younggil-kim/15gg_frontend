@@ -35,13 +35,13 @@ const Li = styled.li`
   padding: 8px 12px;
 `;
 
-function Header({ login, nickname, tier }: headerProps) {
+function Header() {
   const LOGOUT_URL = "/auth/logout";
   const history = useNavigate()
   const dispatch = useDispatch()
   const isLogin = useSelector((state: any) => state.login);
   const nick = useSelector((state: any) => state.nickname);
-  console.log(isLogin);
+
 
   const logout = async () => {
     try {
@@ -50,8 +50,7 @@ function Header({ login, nickname, tier }: headerProps) {
         .get(LOGOUT_URL, { withCredentials: true })
         .then((res) => {
           dispatch({ type: "LOG_OUT" });
-          console.log(res);
-          console.log(res.data.nickname);
+
           if (res.data.nicknameId === undefined) {
             history("/");
           } else {
@@ -59,7 +58,7 @@ function Header({ login, nickname, tier }: headerProps) {
           }
         });
     } catch (e) {
-      console.log("hey",e);
+      console.log(e);
     }
   };
   return (

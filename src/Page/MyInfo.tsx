@@ -97,11 +97,10 @@ function MyInfo() {
     ) {
       alert("모든 정보를 입력해 주세요.")
     }else{
-      console.log(body)
       try{
         const res = await axios.patch(INFO_URL,body,{withCredentials:true})
         .then((res) => {
-          console.log(res)
+          alert("정보 수정에 성공하셨습니다.")
         })
       }catch(e){
         console.log(e)

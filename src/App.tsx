@@ -21,7 +21,6 @@ function App() {
       const res = await axios
         .get(STATUS_URL, { withCredentials: true })
         .then((res) => {
-          console.log(res);
           dispatch({ type: "LOG_IN" });
           dispatch({ type: "NICKNAME", nickname: res.data.data });
         });
@@ -38,7 +37,7 @@ function App() {
   }, []);
   return (
     <Router>
-      <Header login={false} nickname="방패 주워주세요" tier="Gold 2" />
+      <Header />
 
       <Routes>
         <Route path="/" element={<Main />}></Route>

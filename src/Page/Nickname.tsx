@@ -81,19 +81,21 @@ function Nickname() {
   const [rank, setRank] = useState("");
   const [check, setCheck] = useState(false);
   const history = useNavigate();
-  const NICKNAME_URL = `https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${process.env.REACT_APP_RIOT_API_KEY}`;
-  const RANK_TIER_URL = `https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_RIOT_API_KEY}`;
+  const NICKNAME_URL = `/lol/summoner/v4/summoners/by-name/${name}?api_key=${process.env.REACT_APP_RIOT_API_KEY}`;
+  const RANK_TIER_URL = `/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.REACT_APP_RIOT_API_KEY}`;
 
   const fetchNickname = async () => {
+
     try {
       const res = await axios.get(NICKNAME_URL);
-      console.log(res.data);
+
       if (res.status === 200) {
         setId(res.data.id);
         alert("인증에 성공하셨습니다.");
       }
     } catch (e) {
       alert("없는 소환사 닉네임입니다.");
+      console.log(e);
     }
   };
   function convertTier(tiers: string) {
@@ -128,7 +130,6 @@ function Nickname() {
       const res = await axios
         .get(RANK_TIER_URL)
         .then(function (response) {
-          console.log(response.data[0]);
           setTier(response.data[0].tier);
           setRank(response.data[0].rank);
           const body = {
@@ -149,10 +150,8 @@ function Nickname() {
   const NICK_URL = "/myinfo/nickname";
   const postNicknameData = async (body: any) => {
     try {
-      console.log(body);
       const res = await axios.post(NICK_URL, body, { withCredentials: true });
       history("/");
-      console.log(res);
     } catch (e) {
       console.log(e);
     }

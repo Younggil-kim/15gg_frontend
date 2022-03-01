@@ -172,7 +172,7 @@ interface infoType {
 
 const datas: Array<infoType> = [
   {
-    nickname: "민초전략실수빈이",
+    nickname: "test1",
     tier: "Master",
     rank: "240",
     line: "AD",
@@ -181,7 +181,7 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "자야장인수빈이",
+    nickname: "test2",
     tier: "Grand Master",
     rank: "460",
     line: "AD",
@@ -190,7 +190,7 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "수빈이닉네임은조",
+    nickname: "test3",
     tier: "Gold",
     rank: "2",
     line: "AD",
@@ -199,7 +199,7 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "수빈오브레전드",
+    nickname: "test4",
     tier: "Platinum",
     rank: "1",
     line: "AD",
@@ -208,7 +208,7 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "휴지키우기",
+    nickname: "test5",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -217,7 +217,7 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "테트리스장인수빈",
+    nickname: "test6",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -226,7 +226,7 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "수빈수빈수빈수빈",
+    nickname: "test7",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -235,7 +235,7 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "고양이수빈이",
+    nickname: "test8",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -244,7 +244,7 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "내로남불수빈이",
+    nickname: "test9",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -253,7 +253,7 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "수빈이선샤인",
+    nickname: "test10",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -262,7 +262,7 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "삼성직원수빈이",
+    nickname: "test11",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -271,7 +271,7 @@ const datas: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "밥사주는수빈이",
+    nickname: "test12",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -282,7 +282,7 @@ const datas: Array<infoType> = [
 ];
 const datasRecent: Array<infoType> = [
   {
-    nickname: "이즈리얼수빈이",
+    nickname: "test13",
     tier: "Master",
     rank: "240",
     line: "AD",
@@ -291,7 +291,7 @@ const datasRecent: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "방관자야수빈이",
+    nickname: "test14",
     tier: "Grand Master",
     rank: "460",
     line: "AD",
@@ -300,7 +300,7 @@ const datasRecent: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "레이시스트수빈이",
+    nickname: "test15",
     tier: "Gold",
     rank: "2",
     line: "AD",
@@ -309,7 +309,7 @@ const datasRecent: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "리그오브수빈이",
+    nickname: "test16",
     tier: "Platinum",
     rank: "1",
     line: "AD",
@@ -318,7 +318,7 @@ const datasRecent: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "티슈키우기",
+    nickname: "test17",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -327,7 +327,7 @@ const datasRecent: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "테트리스도장깨기",
+    nickname: "test18",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -336,7 +336,7 @@ const datasRecent: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "롤하고싶은수빈이",
+    nickname: "test19",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -345,7 +345,7 @@ const datasRecent: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "예쁜여자가좋은수빈",
+    nickname: "test20",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -354,7 +354,7 @@ const datasRecent: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "바텀듀오수빈이",
+    nickname: "test21",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -363,7 +363,7 @@ const datasRecent: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "이터널수빈이",
+    nickname: "test22",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -372,7 +372,7 @@ const datasRecent: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "네이버대표수빈이",
+    nickname: "test23",
     tier: "Dia",
     rank: "1",
     line: "AD",
@@ -381,7 +381,7 @@ const datasRecent: Array<infoType> = [
     voice: "가능",
   },
   {
-    nickname: "카카오이사수빈이",
+    nickname: "test24",
     tier: "Dia",
     rank: "1",
     line: "AD",
