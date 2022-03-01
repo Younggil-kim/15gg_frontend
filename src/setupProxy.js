@@ -4,21 +4,21 @@ module.exports = function(app) {
   app.use(
     '/myinfo',
     createProxyMiddleware({
-      target: 'http://3.36.69.51',
+      target: process.env.REACT_APP_SERVER_URL,
       changeOrigin: true,
     })
   );
   app.use(
     '/profile',
     createProxyMiddleware({
-      target: 'http://3.36.69.51',
+      target: process.env.REACT_APP_SERVER_URL,
       changeOrigin: true,
     })
   );
   app.use(
     '/auth',
     createProxyMiddleware({
-      target: 'http://3.36.69.51',
+      target: process.env.REACT_APP_SERVER_URL,
       changeOrigin: true,
     })
   );

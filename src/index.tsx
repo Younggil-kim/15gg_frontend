@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { createGlobalStyle } from "styled-components";
 import App from "./App";
-
 import { createStore } from "redux";
 import { Provider, useSelector, useDispatch } from "react-redux";
 
@@ -23,42 +22,39 @@ a{
 `;
 
 function reducer(curState: any, action: any) {
- 
-  if (curState === undefined){
-    return{
+  if (curState === undefined) {
+    return {
       login: false,
-      nickname: '',
-      tier:'',
-      rank:'',
+      nickname: "",
+      tier: "",
+      rank: "",
+    };
+  }
 
-    }
-  };
-
-  const newState = {...curState};
-  if(action.type === 'LOG_IN'){
+  const newState = { ...curState };
+  if (action.type === "LOG_IN") {
     newState.login = true;
-  }else if (action.type === 'NICKNAME'){
+  } else if (action.type === "NICKNAME") {
     newState.nickname = action.nickname;
-  }else if (action.type === 'LOG_OUT'){
+  } else if (action.type === "LOG_OUT") {
     newState.login = false;
     newState.nickname = "";
     newState.tier = "";
     newState.rank = "";
   }
   return newState;
-  
 }
 
-const store = createStore(reducer)
-
-
+const store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <GlobalStyle />
-      <App />
-    </Provider>
+    {/* <BrowserRouter> */}
+      <Provider store={store}>
+        <GlobalStyle />
+        <App />
+      </Provider>
+    {/* </BrowserRouter> */}
   </React.StrictMode>,
   document.getElementById("root")
 );
