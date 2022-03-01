@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/15gg_frontend/static/css/main.638678d1.css",
-    "main.js": "/15gg_frontend/static/js/main.d94c87ae.js",
+    "main.js": "/15gg_frontend/static/js/main.eddb4193.js",
     "static/media/Maplestory Light.ttf": "/15gg_frontend/static/media/Maplestory Light.9d9497585053c96c8082.ttf",
     "static/media/gm.png": "/15gg_frontend/static/media/gm.14abfe47452b69730e86.png",
     "static/media/sitelogo.png": "/15gg_frontend/static/media/sitelogo.5701e1bb4b4339f2bb92.png",
     "index.html": "/15gg_frontend/index.html",
     "main.638678d1.css.map": "/15gg_frontend/static/css/main.638678d1.css.map",
-    "main.d94c87ae.js.map": "/15gg_frontend/static/js/main.d94c87ae.js.map"
+    "main.eddb4193.js.map": "/15gg_frontend/static/js/main.eddb4193.js.map"
   },
   "entrypoints": [
     "static/css/main.638678d1.css",
-    "static/js/main.d94c87ae.js"
+    "static/js/main.eddb4193.js"
   ]
 }
