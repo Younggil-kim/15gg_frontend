@@ -76,7 +76,7 @@ function MyInfo() {
   const onChangeDuo = (event: any) => {
     setDuo(event.target.value);
   };
-  const INFO_URL = '/myinfo'
+  const INFO_URL = 'https://www.15gg.xyz/myinfo'
 
   const duoInfo =async () => {
     const body = {

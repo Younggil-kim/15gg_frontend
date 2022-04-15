@@ -69,7 +69,7 @@ function Regeister() {
   const [password, setPassword] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
   const history = useNavigate()
-  const SIGN_UP_URL = "/auth/signup"
+  const SIGN_UP_URL = "https://www.15gg.xyz/auth/signup"
 
   const postSingUp =async () => {
     try {
