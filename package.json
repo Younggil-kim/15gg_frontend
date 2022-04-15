@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "proxy" : "https://www.15gg.xyz",
-  "homepage" : "https://6259149cc60b17088f17410b--fanciful-dango-1e693d.netlify.app/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -54,6 +53,6 @@
   "devDependencies": {
     "@types/styled-components": "^5.1.20",
     "gh-pages": "^3.2.3"
-  },
-  "homepage": "https://younggil-kim.github.io/15gg_frontend/"
+  }
+
 }
