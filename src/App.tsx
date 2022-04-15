@@ -14,7 +14,7 @@ import axios from "axios";
 function App() {
   const nickname = useSelector((state: any) => state.nickname);
   const isLogin = useSelector((state: any) => state.login);
-  const STATUS_URL = `https://www.15gg.xyz/auth/login/auth/status`;
+  const STATUS_URL = `https://www.15gg.xyz/auth/status`;
   const dispatch = useDispatch();
   const setData = async () => {
     try {
