@@ -14,7 +14,7 @@ import axios from "axios";
 function App() {
   const nickname = useSelector((state: any) => state.nickname);
   const isLogin = useSelector((state: any) => state.login);
-  const STATUS_URL = "/auth/status";
+  const STATUS_URL = `${process.env.REACT_APP_SERVER_URL}/auth/status`;
   const dispatch = useDispatch();
   const setData = async () => {
     try {
