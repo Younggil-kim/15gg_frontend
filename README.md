@@ -1,7 +1,7 @@
 # Duo & Duo 프로젝트 소개
 
 리그오브레전드라는 게임에서 함께 플레이 할 듀오를 구할 수 있는 듀오 찾기 시스템 
-
+[사이트 접속하기](https://younggil-kim.github.io/15gg_frontend/)
 ## 개발 인원 및 기간
 + 2022-02-11 ~ 개발 중
 + Front-End 1명: @Younggil-Kim </br>
