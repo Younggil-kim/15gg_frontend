@@ -28,11 +28,15 @@ const Div = styled.div`
 `;
 const Ul = styled.ul`
   display: flex;
+
   list-style: none;
   padding-left: 0;
 `;
 const Li = styled.li`
   padding: 8px 12px;
+  @media screen and(max-width:800px){
+    display: none;
+  }
 `;
 
 function Header() {

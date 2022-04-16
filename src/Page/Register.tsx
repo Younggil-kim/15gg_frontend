@@ -81,6 +81,7 @@ function Regeister() {
       if (body.password === body.passwordVeri){
         const res = await axios.post(SIGN_UP_URL, body)
         .then((res) => {
+          alert("회원가입에 성공하셨습니다.")
           history('/login')
         })
       }

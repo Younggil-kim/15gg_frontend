@@ -63,7 +63,7 @@ function Login() {
     setPassword(event.target.value);
   };
   const dispatch = useDispatch();
-  const LOGIN_URL = `https://www.15gg.xyz/auth/login`;
+  const LOGIN_URL = `/auth/login`;
 
   const postLoginData = async () => {
     try {

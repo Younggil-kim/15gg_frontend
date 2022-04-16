@@ -14,16 +14,22 @@ import axios from "axios";
 function App() {
   const nickname = useSelector((state: any) => state.nickname);
   const isLogin = useSelector((state: any) => state.login);
-  const STATUS_URL = `https://www.15gg.xyz/auth/status`;
+  const STATUS_URL = `/auth/status`;
   const dispatch = useDispatch();
   const setData = async () => {
     try {
-      const res = await axios
-        .get(STATUS_URL, { withCredentials: true })
-        .then((res) => {
-          dispatch({ type: "LOG_IN" });
-          dispatch({ type: "NICKNAME", nickname: res.data.data });
-        });
+      if (localStorage.getItem("nickname") && localStorage.getItem("login")){
+        dispatch({ type: "LOG_IN" });
+        dispatch({ type: "NICKNAME", nickname: localStorage.getItem("nickname") });
+      }else{
+        
+        const res = await axios
+          .get(STATUS_URL, { withCredentials: true })
+          .then((res) => {
+            dispatch({ type: "LOG_IN" });
+            dispatch({ type: "NICKNAME", nickname: res.data.data });
+          });
+      }
     } catch (e) {
 
       dispatch({type: "LOG_OUT"})
