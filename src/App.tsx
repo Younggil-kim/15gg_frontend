@@ -18,7 +18,7 @@ function App() {
   const dispatch = useDispatch();
   const setData = async () => {
     try {
-      if (sessionStorage.getItem('nickname') !== null ){
+      if (sessionStorage.getItem("nickname") ){
         dispatch({ type: "LOG_IN" });
         dispatch({ type: "NICKNAME", nickname: sessionStorage.getItem("nickname") });
       }else{
