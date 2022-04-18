@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://master--fanciful-dango-1e693d.netlify.app/",
-  "proxy" : "https://www.15gg.xyz",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
