@@ -3,7 +3,7 @@
     font-family: "maple";
     font-display: fallback;
   
-    src: url("./Maplestory Light.ttf") format("truetype");
+    src: url("./Maplestory Light.woff2") format("truetype");
     
     font-weight: 400;
     font-style: normal;

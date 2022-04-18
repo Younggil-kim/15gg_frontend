@@ -18,9 +18,9 @@ function App() {
   const dispatch = useDispatch();
   const setData = async () => {
     try {
-      if (localStorage.getItem("nickname") && localStorage.getItem("login")){
+      if (sessionStorage.getItem("nickname") && sessionStorage.getItem("login")){
         dispatch({ type: "LOG_IN" });
-        dispatch({ type: "NICKNAME", nickname: localStorage.getItem("nickname") });
+        dispatch({ type: "NICKNAME", nickname: sessionStorage.getItem("nickname") });
       }else{
         
         const res = await axios
