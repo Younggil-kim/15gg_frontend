@@ -18,7 +18,7 @@ function App() {
   const dispatch = useDispatch();
   const setData = async () => {
     try {
-      if (sessionStorage.getItem("nickname") !== 'null' || sessionStorage.getItem("nickname") !== 'undefined'){
+      if (sessionStorage.getItem('nickname') !== null ){
         dispatch({ type: "LOG_IN" });
         dispatch({ type: "NICKNAME", nickname: sessionStorage.getItem("nickname") });
       }else{
@@ -26,6 +26,7 @@ function App() {
         const res = await axios
           .get(STATUS_URL, { withCredentials: true })
           .then((res) => {
+            console.log(res)
             dispatch({ type: "LOG_IN" });
             dispatch({ type: "NICKNAME", nickname: res.data.data });
           });
